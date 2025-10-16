@@ -15,9 +15,7 @@ const App = () => {
 
   useEffect(() => {
     checkAuth();
-  }, [checkAuth]);
-
-  console.log({ authUser });
+  }, []);
 
   if (isCheckingAuth && !authUser) {
     return (
@@ -31,13 +29,25 @@ const App = () => {
     <div>
       <NavBar />
       <Routes>
-        <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
-        <Route path="/signup" element={!authUser ? <SignUpPage />: <Navigate to="/" />} />
-        <Route path="/login" element={!authUser ? <LogInPage />: <Navigate to="/" />} />
+        <Route
+          path="/"
+          element={authUser ? <HomePage /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/signup"
+          element={!authUser ? <SignUpPage /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/login"
+          element={!authUser ? <LogInPage /> : <Navigate to="/" />}
+        />
         <Route path="/settings" element={<SettingsPage />} />
-        <Route path="/profile" element={authUser ? <ProfilePage />: <Navigate to="/login" />} />
+        <Route
+          path="/profile"
+          element={authUser ? <ProfilePage /> : <Navigate to="/login" />}
+        />
       </Routes>
-      <Toaster/>
+      <Toaster />
     </div>
   );
 };

@@ -11,7 +11,7 @@ const NavBar = () => {
 
   return (
     <header className="bg-base-100/80 border-b border-base-300 fixed w-full top-0 z-40 backdrop-blur-lg">
-      <div className="container mx-auto px-4 h-20">
+      <div className="w-auto mx-auto px-4 h-20">
         <div className="flex items-center justify-between h-full">
           <Link
             to="/"
@@ -20,14 +20,14 @@ const NavBar = () => {
             <div className="size-12 rounded-lg bg-primary/10 flex items-center justify-center">
               <img src={appLogo} className="rounded-lg" />
             </div>
-            <h1 className="text-[#48edf0] text-md font-bold tracking-wider">
+            <h1 className=" text-md font-bold tracking-wider">
               HANASU
             </h1>
           </Link>
           <div className="flex items-center gap-3">
             <Link
               to={"/settings"}
-              className={btnStyle}
+              className="btn btn-sm gap-2 rounded-lg shadow-none transition-colors border-0 text-center"
             >
               <Settings className="size-4" />
               <span className="sm-inline">Settings</span>
@@ -35,11 +35,11 @@ const NavBar = () => {
 
             {authUser && (
               <>
-                <Link className={btnStyle} to={"/profile"}>
+                <Link className="btn btn-sm gap-2 rounded-lg shadow-none transition-colors border-0 text-center" to={"/profile"}>
                   <User className="size-5" />
                   <span className="hidden sm:inline">Profile</span>
                 </Link>
-                <button className={`flex items-center ${btnStyle} `} onClick={logout}>
+                <button className={`flex items-center btn btn-sm gap-2 rounded-lg shadow-none  transition-colors border-0 text-center `} onClick={logout}>
                   <LogOut className="size-5" />
                   <span className="hidden sm:inline">Logout</span>
                 </button>

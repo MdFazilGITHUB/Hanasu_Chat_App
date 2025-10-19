@@ -1,2 +1,12 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: dark, synthwave, halloween, forest, aqua, lofi,
+    wireframe, black, dracula, cmyk, business, lemonade,
+    night, winter, dim, nord, sunset;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

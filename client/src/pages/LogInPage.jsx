@@ -19,7 +19,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="h-screen grid lg:grid-cols-2">
+    <div className="min-h-screen grid lg:grid-cols-2">
       {/* Left Side - Form */}
       <div className="flex flex-col justify-center items-center p-6 sm:p-12">
         <div className="w-full max-w-md space-y-8">
@@ -50,7 +50,7 @@ const LoginPage = () => {
                 </div>
                 <input
                   type="email"
-                  className={`input input-bordered w-full pl-10 focus:outline-none`}
+                  className={`input input-bordered w-full pl-10 focus:outline-none rounded-lg`}
                   placeholder="jack@example.com"
                   value={formData.email}
                   onChange={(e) =>
@@ -70,7 +70,7 @@ const LoginPage = () => {
                 </div>
                 <input
                   type={showPassword ? "text" : "password"}
-                  className={`input input-bordered w-full pl-10 focus:outline-none`}
+                  className={`input input-bordered w-full pl-10 focus:outline-none rounded-lg`}
                   placeholder="••••••••"
                   value={formData.password}
                   onChange={(e) =>
@@ -93,8 +93,8 @@ const LoginPage = () => {
 
             <button
               type="submit"
-              style={{ backgroundColor: "#008b8b" }}
-              className="btn w-full focus:outline-none"
+              style={{ backgroundColor: "#15ced3" }}
+              className="btn w-full focus:outline-none rounded-lg"
               disabled={isLoggingIn}
             >
               {isLoggingIn ? (
@@ -124,10 +124,8 @@ const LoginPage = () => {
 
       {/* Right Side - Image/Pattern */}
       <AuthImagePattern
-        title={"Welcome back!"}
-        subtitle={
-          "Sign in to continue your conversations and catch up with your messages."
-        }
+        title="Welcome back!"
+        subtitle="Sign in to continue your conversations and catch up with your messages."
       />
     </div>
   );

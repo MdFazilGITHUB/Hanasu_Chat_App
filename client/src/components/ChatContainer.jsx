@@ -6,25 +6,46 @@ import MessageSkeleton from "./skeletons/MessageSkeleton";
 import { useAuthStore } from "../store/useAuthStore";
 import { formatMessageTime } from "../lib/utils";
 import { X } from "lucide-react";
+import { useRef } from "react";
+import { use } from "react";
 
 const ChatContainer = () => {
-  const { messages, getMessages, isMessagesLoading, selectedUser } =
-    useChatStore();
+  const {
+    messages,
+    getMessages,
+    isMessagesLoading,
+    selectedUser,
+    subscribeToNewMessages,
+    unsubscribeFromMessages
+  } = useChatStore();
   const { authUser } = useAuthStore();
   const [openImage, setOpenImage] = useState(null);
+  const messageEndRef = useRef(null);
 
   useEffect(() => {
     if (selectedUser?._id) {
       getMessages(selectedUser._id);
+      subscribeToNewMessages();
     }
-  }, [selectedUser?._id, getMessages]);
+
+    return () => {
+      unsubscribeFromMessages();
+    };
+  }, [
+    selectedUser?._id,
+    getMessages,
+    subscribeToNewMessages,
+    unsubscribeFromMessages
+  ]);
+
+  useEffect(() => {
+    if (messageEndRef.current && messages) {
+      messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
 
   const formatText = (text) =>
-    text.split("\n").map((line, index) => (
-      <p className="text-primary-content" key={index}>
-        {line}
-      </p>
-    ));
+    text.split("\n").map((line, index) => <p key={index}>{line}</p>);
 
   if (isMessagesLoading) {
     return (
@@ -51,6 +72,7 @@ const ChatContainer = () => {
             className={`chat ${
               message.senderId === authUser._id ? "chat-end" : "chat-start"
             }`}
+            ref={messageEndRef}
           >
             <div className="chat-image avatar">
               <div className="size-10 rounded-full">
@@ -74,15 +96,15 @@ const ChatContainer = () => {
             <div
               className={`chat-bubble flex flex-col ${
                 message.senderId === authUser._id
-                  ? "bg-primary text-primary-content"
-                  : "bg-base-200"
+                  ? "chat-bubble-primary"
+                  : "bg-base"
               }`}
             >
               {message.image && (
                 <img
                   src={message.image}
                   alt="attachment"
-                  className="sm:max-w-[200px] rounded-md mb-2 cursor-pointer hover:opacity-80"
+                  className="sm:max-w-[200px] rounded-md mb-2 cursor-pointer hover:opacity-80 m-auto"
                   onClick={() => setOpenImage(message.image)}
                 />
               )}
@@ -104,7 +126,7 @@ const ChatContainer = () => {
           >
             <div className="absolute top-2 right-2">
               <X
-                className="size-6 text-gray-700 cursor-pointer hover:text-error transition"
+                className="size-6 cursor-pointer hover:text-error transition"
                 onClick={() => setOpenImage(null)}
               />
             </div>

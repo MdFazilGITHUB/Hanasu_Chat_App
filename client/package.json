@@ -13,6 +13,7 @@
     "@tailwindcss/vite": "^4.1.14",
     "axios": "^1.11.0",
     "daisyui": "^5.3.3",
+    "hanasu_chat_app": "file:..",
     "lucide-react": "^0.539.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

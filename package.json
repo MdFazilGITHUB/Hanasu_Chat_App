@@ -1,0 +1,22 @@
+{
+  "name": "hanasu_chat_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build":"npm i --prefix server && npm i --prefix client && npm run build --prefix client",
+    "start":"npm run start --prefix server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MdFazilGITHUB/Hanasu_Chat_App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MdFazilGITHUB/Hanasu_Chat_App/issues"
+  },
+  "homepage": "https://github.com/MdFazilGITHUB/Hanasu_Chat_App#readme"
+}
